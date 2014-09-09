@@ -1,139 +1,7 @@
 
- <title> Nellos.net </title>
-
+ <title> Nellos.net interplanetary network </title>
  
- 
- 
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Nellos.net</title>
-		<script type="text/javascript">
-//<![CDATA[
-try{if (!window.CloudFlare) {var CloudFlare=[{verbose:0,p:0,byc:0,owlid:"cf",bag2:1,mirage2:0,oracle:0,paths:{cloudflare:"/cdn-cgi/nexp/dokv=abba2f56bd/"},atok:"67662c8d6057e5aef77f7cc8c79d25cb",petok:"9ef05286068d5b74653627bb52c0cc194d327ee8-1403371171-1800",zone:"nellos.net",rocket:"0",apps:{}}];CloudFlare.push({"apps":{"ape":"44134e7a5335f0f96ffae6453bced17b"}});!function(a,b){a=document.createElement("script"),b=document.getElementsByTagName("script")[0],a.async=!0,a.src="//ajax.cloudflare.com/cdn-cgi/nexp/dokv=97fb4d042e/cloudflare.min.js",b.parentNode.insertBefore(a,b)}()}}catch(e){};
-//]]>
-</script>
-
-
-
-
-
-		
-		<link href="//fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css">
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-		
-		<script type="text/javascript">
-			window.base = 'http://nellos.net';
-			
-			window.messageHTML = function(messages) {
-				if(messages.length == 0) return '<p style="text-align: center;">No messages available, be the first to write one!</p>';
-			
-				var message = [];
-				var result = [];
-				var buffer = '';
-				
-				for(i = 0; i < messages.length; ++i) {
-					message = messages[i];
-					
-					buffer = '<strong>';
-					if(message[2] != null) { buffer += '<span style="color: #' + message[2] + ';">'; }
-					buffer += message[0] + ':';
-					if(message[2] != null) { buffer += '</span>'; }
-					buffer += '</strong> ';
-					buffer += message[1];
-					
-					result.push(buffer);
-				}
-				
-				return '<p>' + result.join('<br>') + '</p>';
-			}
-			
-			window.read = function() {
-				$.ajax({
-					url: window.base + '/ajax-read',
-					success: function(data) {
-						if($.isArray(data)) $('#read').html(window.messageHTML(data));
-					},
-					dataType: 'json'
-				});
-			}
-			
-			window.write = function(message) {
-				$.ajax({
-					type: 'post',
-					url: window.base + '/ajax-write',
-					data: {
-						message: message
-					},
-					success: function(data) {
-						if(data == true) window.read();
-					},
-					dataType: 'json'
-				});
-			}
-			
-			window.clear = function() {
-				$.ajax({
-					url: window.base + '/ajax-clear',
-					success: function(data) {
-						if(data == true) window.read();
-					},
-					dataType: 'json'
-				});
-			}
-		
-			$(document).ready(function() {
-				setInterval(window.read, 5000);
-				
-				$('#write').submit(function(event) {
-					event.preventDefault();
-					var message = $('#message').val();
-					
-					if(message) {
-						window.write(message);
-						
-						$('#message').val('');
-					}
-				});
-				
-				$('#clear').click(function(event) {
-					window.clear();
-				});
-				
-				window.read();
-			});
-		</script>
-	</head>
-	
-	<body>
-		<div id="outer"><div id="middle"><div id="inner">
-			<h1>Nellos.net</h1>
-			
-			<div id="read">
-                <p style="text-align: center;">No messages available at this point.</p>
-            </div>
-			
-			<form id="write" method="post" action="http://nellos.net/send">
-			    <input id="name" name="name" type="text" placeholder="Name" style="width: 21%;" />
-				
-				
-				
-				<input id="message" name="message" type="text" placeholder="Message" style="width: 76%;" />
-				<input type="submit" value="Send" style="width: 10%;" />
-
-				
-				
-			</form>
-		</div></div></div>
-	</body>
-</html>
-
-
- 
- 
- 
- <style type="text/css">
+  <style type="text/css">
             html {
     overflow: hidden;
 }
@@ -208,3 +76,19 @@ input[type="text"], input[type="submit"], input[type="button"], textarea {
 input[type="submit"], input[type="button"] {
     height: 30px;
 }		</style>
+  
+ 
+ <center> <img src = "Untitled.png" /> </center>
+ 
+ <hr />
+ 
+ <p> I am a whale biologist and I can fix your whales! If you don't <br>
+     have one take one with a crane. We also have a whale agency <br>
+     which launches whales to space hitting 10000000 times the speed <br>
+     of light and can go to the planet called (sensored). </p>
+	 
+	<hr />
+	
+	<center> <a href = "index.html" /> Nellos.net </a> </center>
+	
+	<hr />
