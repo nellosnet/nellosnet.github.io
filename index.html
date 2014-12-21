@@ -1,92 +1,236 @@
 
- <title> Nellos.net </title>
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Nellos.net</title>
+		<script type="text/javascript">
+//<![CDATA[
+try{if (!window.CloudFlare) {var CloudFlare=[{verbose:0,p:0,byc:0,owlid:"cf",bag2:1,mirage2:0,oracle:0,paths:{cloudflare:"/cdn-cgi/nexp/dokv=abba2f56bd/"},atok:"67662c8d6057e5aef77f7cc8c79d25cb",petok:"9ef05286068d5b74653627bb52c0cc194d327ee8-1403371171-1800",zone:"nellos.net",rocket:"0",apps:{}}];CloudFlare.push({"apps":{"ape":"44134e7a5335f0f96ffae6453bced17b"}});!function(a,b){a=document.createElement("script"),b=document.getElementsByTagName("script")[0],a.async=!0,a.src="//ajax.cloudflare.com/cdn-cgi/nexp/dokv=97fb4d042e/cloudflare.min.js",b.parentNode.insertBefore(a,b)}()}}catch(e){};
+//]]>
+</script>
+
+
+
+
+
+		
+		<link href="//fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet" type="text/css">
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+			window.base = 'http://nellos.net';
+			
+			window.messageHTML = function(messages) {
+				if(messages.length == 0) return '<p style="text-align: center;">No messages available, be the first to write one!</p>';
+			
+				var message = [];
+				var result = [];
+				var buffer = '';
+				
+				for(i = 0; i < messages.length; ++i) {
+					message = messages[i];
+					
+					buffer = '<strong>';
+					if(message[2] != null) { buffer += '<span style="color: #' + message[2] + ';">'; }
+					buffer += message[0] + ':';
+					if(message[2] != null) { buffer += '</span>'; }
+					buffer += '</strong> ';
+					buffer += message[1];
+					
+					result.push(buffer);
+				}
+				
+				return '<p>' + result.join('<br>') + '</p>';
+			}
+			
+			window.read = function() {
+				$.ajax({
+					url: window.base + '/ajax-read',
+					success: function(data) {
+						if($.isArray(data)) $('#read').html(window.messageHTML(data));
+					},
+					dataType: 'json'
+				});
+			}
+			
+			window.write = function(message) {
+				$.ajax({
+					type: 'post',
+					url: window.base + '/ajax-write',
+					data: {
+						message: message
+					},
+					success: function(data) {
+						if(data == true) window.read();
+					},
+					dataType: 'json'
+				});
+			}
+			
+			window.clear = function() {
+				$.ajax({
+					url: window.base + '/ajax-clear',
+					success: function(data) {
+						if(data == true) window.read();
+					},
+					dataType: 'json'
+				});
+			}
+		
+			$(document).ready(function() {
+				setInterval(window.read, 5000);
+				
+				$('#write').submit(function(event) {
+					event.preventDefault();
+					var message = $('#message').val();
+					
+					if(message) {
+						window.write(message);
+						
+						$('#message').val('');
+					}
+				});
+				
+				$('#clear').click(function(event) {
+					window.clear();
+				});
+				
+				window.read();
+			});
+		</script>
+	</head>
+	
+		</form>
+		</div></div></div>
+	
+	<body>
  
-  <style type="text/css">
-            html {
-    overflow: hidden;
-}
+ 	   <style>
 
-body {
-    font-family: 'Noto Sans',sans-serif;
-    font-size: 80%;
-    overflow: hidden;
-    background: url("1.jpg") no-repeat fixed;
-}
 
-h1 {
-    font-size: 138%;
-    font-weight: 600;
-    text-align: center;
-    color: #E6E6E6;
-}
+ 		body {
+	    font-family: 'noto sans' , sans-serif;
+		background: url("1.jpg")no-repeat fixed;
+		
+		}
+		
+		h1 {
+		color: #ffffff;
+		margin: 20px 0 20px 0;
+	    display: inline;
+	    margin-left: 900px;
+		
+		
+		}
+		
+		h2 {
+		color: #ffffff;
+	    margin-bottom: 4px;
+		
+		}
+		
+		h3 {
+	    color: #ffffff;
+	    margin-bottom: 540px;
+		
+		}
+		
+		p {
+	    color: #ffffff;
+		margin: 20px 0 20px 0;
+		
+		}
+		
+	    a:hover {
+		
+	 color: #ffffff;
+	 border-bottom: 4px solid #ffffff;
+	 
+	 }
+	 
 
-p {
-    color: #EAEAEA;
-    text-align: center;
-}
+	 
+	 a {
+	 color: #999999;
+	 text-decoration: none;
+	 margin: 20px 20px 20px 0;
+	
+	 }
+	 
+	     .header {
+	
+       background-color: #444444;
+	   
+	   }
+	   
+	   .footer {
+	   
+	                           background-color: #444444;
+							   
+							   padding-bottom: 59px;
+							   
+							   }
+							   
+							   </style>
+ 
 
-#outer {
-    display: table;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-}
+ 
 
-#middle {
-    display: table-cell;
-    vertical-align: middle;
-}
+	 
 
-#inner {
-    margin-left: auto;
-    margin-right: auto;
-    width: 470px;
-    background: none repeat scroll 0 0 #303030;
-    border: 1px solid #171717;
-    border-radius: 5px 5px 5px 5px;
-    padding: 15px;
-}
-
-#read {
-    word-wrap: break-word;
-}
-
-#read p {
-    text-align: left;
-}
-
-a:active,a:link,a:visited {
-    color: #777777;
-    text-decoration: underline;
-}
-
-a:hover {
-    color: #777777;
-    text-decoration: none;
-}
-
-input[type="text"], input[type="submit"], input[type="button"], textarea {
-    color: #EAEAEA;
-    padding: 5px;
-    background-color : #4A4A4A;
-    border: 0px;
-    height: 20px;
-}
-
-input[type="submit"], input[type="button"] {
-    height: 30px;
-}		</style>
   
  
  
- <h1> Updates </h1>
-
- <hr />
- 
- <p> coming soon. </p>
+<div class ="header" >
 	 
-	<hr />
+	 <a href = "http://nellos.net" > coming soon </a>
+	 
+	 <a href = "http://nellos.net" > coming soon </a>
+	 
+	 <a href = "http://nellos.net" > coming soon </a>
+	 
+	 <a href = "http://nellos.net" > coming soon </a>
+	 
+	 
+	 
+	 <center> <h1> Nellos.net </h1> </center>
+	 
+	 </div>
+	 
+	 
+	 <center> <h2> updates </h2> </center>
+	 
+	 <center> <h3> coming soon </h3> </center>
+              
+	 
+     <div class ="footer" >
+	 
+	 
+	 
+	 <a href = "http://nellos.net" > coming soon </a>
+	 
+	 <a href = "http://nellos.net" > coming soon </a>
+	 
+	 <a href = "http://nellos.net" > coming soon </a>
+	 
+	 <a href = "http://nellos.net" > coming soon </a>
+	 
+	 <a href = "http://nellos.net" > coming soon </a>
+	 
+	 <a href = "http://nellos.net" > coming soon </a>
+	 
+	 <a href = "http://nellos.net" > coming soon </a>
+	 
+	 <a href = "http://nellos.net" > coming soon </a>
+	 
+	 
+	 </div>
+	 
+	 	</body>
+</html>
+	 
 	
-	
-	
-	
+
+
+
